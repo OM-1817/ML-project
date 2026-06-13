@@ -37,7 +37,7 @@ The project follows a complete ML lifecycle including data analysis, preprocessi
 
 ### Deployment
 - Docker
-- AWS ECR (Elastic Container Registry)
+- AWS Elastic Beanstalk
 - AWS EC2
 
 ---
@@ -46,7 +46,12 @@ The project follows a complete ML lifecycle including data analysis, preprocessi
 
 ```text
 ├── artifacts/
-│
+│   ├──data.csv
+|   ├──model.pkl
+|   ├──preprocessor.pkl
+|   ├──test.csv
+|   ├──train.csv
+|
 ├── notebook/
 │   ├── 1. EDA STUDENT PERFORMANCE.ipynb
 │   └── 2. MODEL TRAINING.ipynb
@@ -66,6 +71,7 @@ The project follows a complete ML lifecycle including data analysis, preprocessi
 │
 ├── templates/
 │
+├── Dockerfile
 ├── app.py
 ├── setup.py
 ├── requirements.txt
@@ -138,14 +144,37 @@ The Flask application allows users to:
 
 ## ☁️ Deployment
 
-The application has been containerized using **Docker** and deployed on **AWS Cloud** using:
 
-- Amazon Elastic Container Registry (ECR)
+The application was containerized using **Docker** and deployed on **AWS Elastic Beanstalk**. The Docker image was built locally, pushed to **Docker Hub**, and deployed through an Elastic Beanstalk environment running on an automatically managed **Amazon EC2** instance.
+
+### Deployment Pipeline
+
+```text
+Flask Application
+        ↓
+Docker Containerization
+        ↓
+Docker Hub
+        ↓
+AWS Elastic Beanstalk
+        ↓
+Amazon EC2 Instance
+        ↓
+Public Web Application
+```
+
+### Technologies Used
+
+- Python
+- Flask
+- Docker
+- Docker Hub
+- AWS Elastic Beanstalk
 - Amazon EC2
 
-This deployment approach ensures portability, scalability, and reproducibility of the machine learning application.
+### Live Demo
 
----
+🔗 **Application URL:** http://studentperformance-env-1.eba-25evzmvv.ap-southeast-2.elasticbeanstalk.com/predictdata
 
 ## 🔮 Future Improvements
 
